@@ -18,5 +18,7 @@ To run word comparision test use `mvn clean test -Dtest=PlatformTestRunner` in t
 
 At the end of the test a nice cucumber report will be generated which will be found target/generated-reports/*
 
+Open `cucumber-html-reports/overview-features.html` to see the overall results in a html format
+
 
 
