@@ -10,9 +10,9 @@ This framework uses Karate DSL - https://github.com/intuit/karate
 4. Cucumber Plugin (not necessary if not writing new script)
 5. Gherkin Plugin (not necessary if not writing new script)
 
-After set up, clone the project to your local.
+After set up, clone the project to your local.  
 
-##To Run Functional Test
+## To Run Functional Test
 
 To run word comparision test use `mvn clean test -Dtest=PlatformTestRunner` in the root of the project. This will run all service tests.
 
