@@ -1,0 +1,42 @@
+version: 0.2
+
+env:
+  variables:
+    environment: "codebuild"
+
+  parameter-store:
+    weather_api_key: /weather/apikey
+
+
+phases:
+  install:
+    runtime-versions:
+      java: corretto11
+
+  build:
+    commands:
+      - mvn test -Dtest=ServicesTestRunner
+  post_build:
+    commands:
+      - S3_BUCKET_CLOUDFRONT=your.s3.bucketname.for.static.website.hosting
+      - echo test completed on `date`
+      - echo copying the log files
+      - cp -r target/logs.log target/generated-reports
+      - mkdir target/logs
+      - cat target/logs.log > target/logs/logs.html
+      - zip -r report-artefacts.zip target/generated-reports/cucumber-html-reports
+      - cp report-artefacts.zip target/generated-reports
+      - aws s3 rm s3://$S3_BUCKET_CLOUDFRONT/ --recursive
+      - aws s3 cp target/generated-reports/cucumber-html-reports s3://$S3_BUCKET_CLOUDFRONT/ --recursive
+      - aws s3 cp target/logs s3://$S3_BUCKET_CLOUDFRONT/ --recursive
+      - mkdir -p relocated/$(date +%d)
+      - mv target/generated-reports relocated/$(date +%d)/Some-tests-$(date +%Y-%m-%d-%H%M%S)
+
+
+artifacts:
+  files:
+    - '**/*'
+  base-directory: 'relocated'
+  discard-paths: no
+  name: $(date +%Y%m)
+
