@@ -22,7 +22,7 @@ Depending on your OS, follow the general instructions how to set them up and set
 
 ## To Run Functional Test
 
-To run word comparision test use `mvn clean test -Dtest=PlatformTestRunner` in the root of the project. This will run all service tests.
+To run services test use `mvn clean test -Dtest=ServicesTestRunner` in the root of the project. This will run all service tests.
 
 At the end of the test a nice cucumber report will be generated which will be found target/generated-reports/*
 
