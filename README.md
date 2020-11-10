@@ -47,7 +47,7 @@ For above:
 2. Then follow the instruction here https://docs.aws.amazon.com/AmazonS3/latest/dev/EnableWebsiteHosting.html to enable it for static website hosting. 
 3. Mention root page as `overview-features.html`
 4. Now replace the name of S3 bucket name with newly created S3 name in `buildspec.yml` - S3_BUCKET_STATIC_WEB=your.s3.bucketname.for.static.website.hosting
-5. Buildspec post build commands will push the generated html filed and related resources to the S3 bucket which can be viewed as site.
+5. Buildspec post build commands will push the generated html files and related resources to the S3 bucket which can be viewed as site.
 
 
 
